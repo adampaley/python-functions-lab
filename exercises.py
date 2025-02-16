@@ -136,3 +136,37 @@ print('Exercise 4: Convert -200°C to Kelvin:', convert_temperature(-200, 'C', '
 print('Exercise 4: Convert 100K to Celsius:', convert_temperature(100, 'K', 'C'))
 print('Exercise 4: Convert -320°F to Kelvin', convert_temperature(-350, 'F', 'K'))
 print('Exercise 4: Convert 300K to Fahrenheit', convert_temperature(300, 'K', 'F'))
+
+# Exercise 5: Sum to N
+#
+# Write a function named `sum_to` that takes a single integer n and returns the sum of all integers from 1 to n.
+#
+# Examples:
+# sum_to(6) should return 21.
+# sum_to(10) should return 55.
+#
+# Define the function and then call it below.
+
+def sum_to (integer):
+    try:
+        integer = int(integer)
+        if (integer < 1):
+            nums = list(range(1, integer-1, -1))
+        elif (integer > 1):
+            nums = list(range(integer+1))
+        else:
+            return 1
+        
+        sum = 0
+        for num in nums:
+            sum += num
+        return sum
+
+    except:
+        print("ValueError: Temperature must be given as an integer value.")
+
+print('Exercise 5:', sum_to(6)) 
+print('Exercise 5:', sum_to(10))
+print('Exercise 5:', sum_to(-4)) # expect -9 because inclusive of positive one
+print('Exercise 5:', sum_to(1))
+print('Exercise 5:', sum_to(0)) # expect 1 because inclusive of one
