@@ -18,7 +18,7 @@ def calculate_area_triangle(base, height):
         return f'{base * height / 2} units^2'
     except ValueError:
         print("ValueError: Must enter numeric inputs.")
-        return
+        return None
 
 print('Exercise 1:', calculate_area_triangle(10, 5))
 print('Exercise 1:', calculate_area_triangle(7, 3))
@@ -44,9 +44,9 @@ def simple_interest (principal, rate, time):
         interest = principal * rate * time / 100
         return f'{int(interest)} units/year' if interest.is_integer() else f'{interest} units/year'
 
-    except TypeError:
-        print("TypeError: Must enter numeric inputs.")
-        return
+    except ValueError:
+        print("ValueError: Must enter numeric inputs.")
+        return None
 
 print('Exercise 2:', simple_interest(1000, 5, 2))
 print('Exercise 2:', simple_interest(1500, 3.5, 5))
@@ -74,7 +74,7 @@ def apply_discount (price, discount):
         return f'${int(new_price)}' if new_price.is_integer() else f'${new_price}'
     except ValueError:
         print("ValueError: Must enter numeric inputs.")
-        return
+        return None
 
 print('Exercise 3:', apply_discount(100, 25))
 print('Exercise 3:', apply_discount(80, 10))
@@ -128,7 +128,7 @@ def convert_temperature (temperature, original_unit, converted_unit):
         return converted_value
     except ValueError:
         print("ValueError: Temperature must be given as a numeric value, and unit must be given as 'C' or 'F'.")
-        return
+        return None
 
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(-0, 'C', 'F'))
 print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F', 'C'))
@@ -162,11 +162,39 @@ def sum_to (integer):
             sum += num
         return sum
 
-    except:
+    except ValueError:
         print("ValueError: Temperature must be given as an integer value.")
+        return None
 
 print('Exercise 5:', sum_to(6)) 
 print('Exercise 5:', sum_to(10))
 print('Exercise 5:', sum_to(-4)) # expect -9 because inclusive of positive one
 print('Exercise 5:', sum_to(1))
 print('Exercise 5:', sum_to(0)) # expect 1 because inclusive of one
+
+# Exercise 6: Find the Largest Number
+#
+# Write a function named `largest` that takes three integers as arguments and returns the largest of them.
+#
+# Examples:
+# largest(1, 2, 3) should return 3.
+# largest(10, 4, 2) should return 10.
+#
+# Define your function and test it with different inputs.
+def largest(int1, int2, int3):
+    try:
+        if any(isinstance(ints, float) for ints in [int1, int2, int3]):
+            print("Floating value rounded down to closest interger and converted to integer class.")
+        int1 = int(int1)
+        int2 = int(int2)
+        int3 = int(int3)
+
+        return max(int1, int2, int3)
+    except:
+        print("ValueError: Values must be given as integer values.")
+        return None
+
+
+print('Exercise 6:', largest(1, 2, 3))
+print('Exercise 6:', largest(10, 4, 2))
+print('Exercise 6:', largest(-1, 0, -3))
