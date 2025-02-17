@@ -41,7 +41,7 @@ def simple_interest (principal, rate, time):
         time = int(time)
         if principal < 0 or rate < 0 or time < 0:
             return print("Invalid Input: Must enter non-negative numeric inputs.")
-        interest = principal * rate * time / 100
+        interest = round(principal * rate * time / 100, 2)
         return f'{int(interest)} units/year' if interest.is_integer() else f'{interest} units/year'
 
     except ValueError:
@@ -70,14 +70,14 @@ def apply_discount (price, discount):
             return print("Invalid Input: Must enter positive numeric inputs.")
         elif discount > 100:
             return print("Invalid Input: Price cannot be discounted beyond free.")
-        new_price = (price - (price*discount))
+        new_price = round((price - (price*discount)), 2)
         return f'${int(new_price)}' if new_price.is_integer() else f'${new_price}'
     except ValueError:
         print("ValueError: Must enter numeric inputs.")
         return None
 
 print('Exercise 3:', apply_discount(100, 25))
-print('Exercise 3:', apply_discount(80, 10))
+print('Exercise 3:', apply_discount(80, 11))
 
 # Exercise 4: Convert Temperature
 #
@@ -190,11 +190,46 @@ def largest(int1, int2, int3):
         int3 = int(int3)
 
         return max(int1, int2, int3)
-    except:
+    except ValueError:
         print("ValueError: Values must be given as integer values.")
         return None
 
 
 print('Exercise 6:', largest(1, 2, 3))
 print('Exercise 6:', largest(10, 4, 2))
-print('Exercise 6:', largest(-1, 0, -3))
+
+# Exercise 7: Calculate a Tip
+#
+# Create a function called `calculate_tip`. It should take the bill amount and the tip percentage (as a whole number).
+# The function should return the amount of the tip.
+#
+# Examples:
+# calculate_tip(50, 20) should return 10.
+#
+# Write your function and test its output below.
+
+def calculate_tip(bill_amount, tip_percentage):
+    try:
+
+        bill_amount = float(bill_amount)
+        tip_percentage = float(tip_percentage)/100
+
+        if bill_amount < 0:
+            return print("Invalid Input: Must enter positive numeric inputs.")
+        elif bill_amount == 0:
+            print("Programmer's Note: If you are getting a free service, pick a non-zero amount to tip.")
+        elif tip_percentage < 0:
+            return print("Invalid Input: Tip cannot be a negative percentage.")
+        elif tip_percentage < 0.15:
+            print("Programmer's Note: If you cannot pay a reasonable tip, consider not using the service.")
+
+        tip_amount = round(bill_amount*tip_percentage, 2)
+
+        return f'${int(tip_amount)}' if tip_amount.is_integer() else f'${tip_amount}'
+    except ValueError:
+        print("ValueError: Values must be given as integer values.")
+        return None
+
+
+print('Exercise 7:', calculate_tip(50, 20))
+
